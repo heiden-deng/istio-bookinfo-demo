@@ -1,0 +1,9 @@
+version=0.1
+userId=root
+userUid=0
+processId=9
+vmId=9
+displayName=/opt/ibm/wlp/bin/tools/ws-server.jar\ defaultServer
+notifier=_notifier
+replyFile=/tmp/.com_ibm_tools_attach/9/replyInfo
+attachNotificationSync=/tmp/.com_ibm_tools_attach/9/attachNotificationSync

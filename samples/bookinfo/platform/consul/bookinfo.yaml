@@ -1,0 +1,134 @@
+# Copyright 2017 Istio Authors
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+############################################################################
+version: '2'
+services:
+  details-v1:
+    image: istio/examples-bookinfo-details-v1:1.8.2
+    networks:
+      istiomesh:
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_NAME=details
+      - SERVICE_TAGS=version|v1
+      - SERVICE_PROTOCOL=http
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+
+  ratings-v1:
+    image: istio/examples-bookinfo-ratings-v1:1.8.0
+    networks:
+      istiomesh:
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_NAME=ratings
+      - SERVICE_TAGS=version|v1
+      - SERVICE_PROTOCOL=http
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+
+  reviews-v1:
+    image: istio/examples-bookinfo-reviews-v1:1.8.0
+    networks:
+      istiomesh:
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_9080_NAME=reviews
+      - SERVICE_TAGS=version|v1
+      - SERVICE_PROTOCOL=http
+      - SERVICE_9443_IGNORE=1
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+
+  reviews-v2:
+    image: istio/examples-bookinfo-reviews-v2:1.8.0
+    networks:
+      istiomesh:
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_9080_NAME=reviews
+      - SERVICE_TAGS=version|v2
+      - SERVICE_PROTOCOL=http
+      - SERVICE_9443_IGNORE=1
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+
+  reviews-v3:
+    image: istio/examples-bookinfo-reviews-v3:1.8.0
+    networks:
+      istiomesh:
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_9080_NAME=reviews
+      - SERVICE_TAGS=version|v3
+      - SERVICE_PROTOCOL=http
+      - SERVICE_9443_IGNORE=1
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+
+  productpage-v1:
+    image: istio/examples-bookinfo-productpage-v1:1.8.5
+    networks:
+      istiomesh:
+        ipv4_address: 172.28.0.14
+    dns:
+      - 172.20.10.2
+      - 8.8.8.8
+    dns_search:
+        - service.consul
+    environment:
+      - SERVICE_NAME=productpage
+      - SERVICE_TAGS=version|v1
+      - SERVICE_PROTOCOL=http
+    ports:
+      - "9081:9080"
+    expose:
+      - "9080"
+    volumes:
+      - /Users/heiden/workspace/10-tsf/istio-1.0.9/pkgs:/tmp
+networks:
+  istiomesh:
+    external:
+      name: consul_istiomesh
