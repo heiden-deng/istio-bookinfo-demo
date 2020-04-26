@@ -1,5 +1,11 @@
 # Istio
 
+从Istio官方fork出来，支持在mac上部署，官方repo在mac下部署时会出现dns解析的问题  
+注意：  
+需要修改samples/bookinfo/platform/consul/bookinfo.yaml文件中的172.20.10.2地址为本机实际网卡地址。
+
+
+
 [![CircleCI](https://circleci.com/gh/istio/istio.svg?style=shield)](https://circleci.com/gh/istio/istio)
 [![Go Report Card](https://goreportcard.com/badge/github.com/istio/istio)](https://goreportcard.com/report/github.com/istio/istio)
 [![GoDoc](https://godoc.org/github.com/istio/istio?status.svg)](https://godoc.org/github.com/istio/istio)
